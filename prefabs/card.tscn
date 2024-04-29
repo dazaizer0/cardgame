@@ -1,0 +1,134 @@
+[gd_scene load_steps=13 format=3 uid="uid://c5noroiq2blgy"]
+
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_evasp"]
+[ext_resource type="Texture2D" uid="uid://blhnjguyyaf51" path="res://textures/test_card.png" id="2_3srap"]
+[ext_resource type="Texture2D" uid="uid://bsdll3dm4cquw" path="res://textures/card_back.png" id="3_64ycg"]
+[ext_resource type="Script" path="res://scripts/card_area.gd" id="3_ol6yg"]
+[ext_resource type="AudioStream" uid="uid://d1x72wbxsx0oj" path="res://sounds/put_card.wav" id="4_20y21"]
+[ext_resource type="AudioStream" uid="uid://be3he3dgdq0sn" path="res://sounds/card_back.wav" id="5_i2j2p"]
+[ext_resource type="AudioStream" uid="uid://bthtge5nwccjr" path="res://sounds/card_select.wav" id="5_xjqsv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f23r3"]
+
+[sub_resource type="Animation" id="Animation_rf5nv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/CardBack:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_opwvf"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.28, 0.28), Vector2(0.26, 0.26)]
+}
+
+[sub_resource type="Animation" id="Animation_0prg3"]
+resource_name = "select_card"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3ay8"]
+_data = {
+"RESET": SubResource("Animation_rf5nv"),
+"put_card": SubResource("Animation_opwvf"),
+"select_card": SubResource("Animation_0prg3")
+}
+
+[node name="card" type="Node2D"]
+script = ExtResource("1_evasp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_3srap")
+
+[node name="CardBack" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(4, -8)
+texture = ExtResource("3_64ycg")
+
+[node name="Area2D" type="Area2D" parent="." groups=["card"]]
+script = ExtResource("3_ol6yg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(7.305, 8.865)
+shape = SubResource("RectangleShape2D_f23r3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m3ay8")
+}
+
+[node name="put_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_20y21")
+
+[node name="select_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xjqsv")
+
+[node name="back_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_i2j2p")
+
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

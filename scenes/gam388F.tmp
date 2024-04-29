@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhjjodhsb3p6y"]
+
+[ext_resource type="PackedScene" uid="uid://c5noroiq2blgy" path="res://prefabs/card.tscn" id="1_ejda6"]
+[ext_resource type="PackedScene" uid="uid://xsqiwgj608n0" path="res://prefabs/slot.tscn" id="2_rnad2"]
+
+[node name="game" type="Node2D"]
+
+[node name="slots" type="Node2D" parent="."]
+
+[node name="slot" parent="slots" instance=ExtResource("2_rnad2")]
+position = Vector2(177, 189)
+
+[node name="slot2" parent="slots" instance=ExtResource("2_rnad2")]
+position = Vector2(450, 189)
+
+[node name="slot3" parent="slots" instance=ExtResource("2_rnad2")]
+position = Vector2(714, 189)
+
+[node name="slot4" parent="slots" instance=ExtResource("2_rnad2")]
+position = Vector2(970, 189)
+
+[node name="cards" type="Node2D" parent="."]
+
+[node name="card" parent="cards" groups=["slot"] instance=ExtResource("1_ejda6")]
+position = Vector2(414, 553)
+rotation = -0.23911
+type = 1
+value = 5
+
+[node name="card2" parent="cards" instance=ExtResource("1_ejda6")]
+position = Vector2(574, 537)
+type = 2
+value = 2
+
+[node name="card3" parent="cards" instance=ExtResource("1_ejda6")]
+position = Vector2(735, 555)
+rotation = 0.23911
+type = 1
+value = 4

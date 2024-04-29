@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm24sub5vmd81"]
+
+[ext_resource type="PackedScene" uid="uid://3ruc5krdtbbu" path="res://prefabs/card_deck.tscn" id="1_asrep"]
+[ext_resource type="PackedScene" uid="uid://y8u748ablqbx" path="res://prefabs/camera.tscn" id="1_jo64s"]
+
+[node name="player" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource("1_jo64s")]
+
+[node name="card_deck" parent="." instance=ExtResource("1_asrep")]

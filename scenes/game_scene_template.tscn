@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn6hnym34upgo"]
+
+[ext_resource type="PackedScene" uid="uid://y8u748ablqbx" path="res://prefabs/camera.tscn" id="1_j4iq5"]
+[ext_resource type="PackedScene" uid="uid://xsqiwgj608n0" path="res://prefabs/slot.tscn" id="2_5gery"]
+[ext_resource type="Texture2D" uid="uid://sa86k7eesdrb" path="res://textures/slot.png" id="3_ifg7f"]
+[ext_resource type="PackedScene" uid="uid://c5noroiq2blgy" path="res://prefabs/card.tscn" id="4_7ghdd"]
+
+[node name="game2" type="Node2D"]
+
+[node name="Camera2D" parent="." instance=ExtResource("1_j4iq5")]
+position = Vector2(570, 329)
+
+[node name="player_cards2" type="Node2D" parent="."]
+position = Vector2(999, 307)
+scale = Vector2(0.7, 0.7)
+
+[node name="slot6" parent="player_cards2" instance=ExtResource("2_5gery")]
+
+[node name="slot2" parent="player_cards2" instance=ExtResource("2_5gery")]
+position = Vector2(-435.714, 2.85712)
+
+[node name="slot3" parent="player_cards2" instance=ExtResource("2_5gery")]
+position = Vector2(-214.286, 1.42859)
+
+[node name="slot4" parent="player_cards2" instance=ExtResource("2_5gery")]
+position = Vector2(-437.143, -291.429)
+
+[node name="slot5" parent="player_cards2" instance=ExtResource("2_5gery")]
+position = Vector2(-221.429, -291.429)
+
+[node name="slot7" parent="player_cards2" instance=ExtResource("2_5gery")]
+position = Vector2(0, -291.429)
+
+[node name="player_cards" type="Node2D" parent="."]
+position = Vector2(459, 544)
+scale = Vector2(0.7, 0.7)
+
+[node name="slot6" parent="player_cards" instance=ExtResource("2_5gery")]
+
+[node name="slot2" parent="player_cards" instance=ExtResource("2_5gery")]
+position = Vector2(-435.714, 2.85712)
+
+[node name="slot3" parent="player_cards" instance=ExtResource("2_5gery")]
+position = Vector2(-214.286, 1.42859)
+
+[node name="slot4" parent="player_cards" instance=ExtResource("2_5gery")]
+position = Vector2(-437.143, -291.429)
+
+[node name="slot5" parent="player_cards" instance=ExtResource("2_5gery")]
+position = Vector2(-221.429, -291.429)
+
+[node name="slot7" parent="player_cards" instance=ExtResource("2_5gery")]
+position = Vector2(0, -291.429)
+
+[node name="Slot" type="Sprite2D" parent="."]
+position = Vector2(1060, 524)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("3_ifg7f")
+
+[node name="Slot2" type="Sprite2D" parent="."]
+position = Vector2(89, 120)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("3_ifg7f")
+
+[node name="card" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("4_7ghdd")]
+position = Vector2(1062, 525)
+scale = Vector2(0.86, 0.86)
+cam = NodePath("../Camera2D")
+type = 1
+value = 1
+id = 1
+scale_ = 10

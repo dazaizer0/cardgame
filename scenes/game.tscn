@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhjjodhsb3p6y"]
+
+[ext_resource type="PackedScene" uid="uid://c5noroiq2blgy" path="res://prefabs/card.tscn" id="1_ejda6"]
+[ext_resource type="PackedScene" uid="uid://xsqiwgj608n0" path="res://prefabs/slot.tscn" id="2_rnad2"]
+[ext_resource type="PackedScene" uid="uid://y8u748ablqbx" path="res://prefabs/camera.tscn" id="3_ook8t"]
+
+[node name="game" type="Node2D"]
+
+[node name="slots" type="Node2D" parent="."]
+
+[node name="slot" parent="slots" instance=ExtResource("2_rnad2")]
+z_index = -2
+position = Vector2(177, 189)
+
+[node name="slot2" parent="slots" instance=ExtResource("2_rnad2")]
+z_index = -2
+position = Vector2(450, 189)
+
+[node name="slot3" parent="slots" instance=ExtResource("2_rnad2")]
+z_index = -2
+position = Vector2(714, 189)
+
+[node name="slot4" parent="slots" instance=ExtResource("2_rnad2")]
+z_index = -2
+position = Vector2(970, 189)
+
+[node name="cards" type="Node2D" parent="."]
+
+[node name="card" parent="cards" node_paths=PackedStringArray("cam") groups=["slot"] instance=ExtResource("1_ejda6")]
+position = Vector2(414, 553)
+rotation = -0.23911
+cam = NodePath("../../Camera2D")
+type = 1
+value = 5
+id = 1
+scale_ = 10
+
+[node name="card2" parent="cards" node_paths=PackedStringArray("cam") instance=ExtResource("1_ejda6")]
+position = Vector2(574, 537)
+cam = NodePath("../../Camera2D")
+type = 2
+value = 2
+id = 2
+scale_ = 10
+
+[node name="card3" parent="cards" node_paths=PackedStringArray("cam") instance=ExtResource("1_ejda6")]
+position = Vector2(735, 555)
+rotation = 0.23911
+cam = NodePath("../../Camera2D")
+type = 1
+value = 4
+id = 3
+scale_ = 10
+
+[node name="Camera2D" parent="." instance=ExtResource("3_ook8t")]
+position = Vector2(576, 326)

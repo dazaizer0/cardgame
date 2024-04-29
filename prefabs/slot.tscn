@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://xsqiwgj608n0"]
+
+[ext_resource type="Script" path="res://scripts/slot.gd" id="1_kfrmm"]
+[ext_resource type="Texture2D" uid="uid://sa86k7eesdrb" path="res://textures/slot.png" id="2_krko4"]
+[ext_resource type="Script" path="res://scripts/slot_area.gd" id="3_nf2l7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbkb2"]
+
+[node name="slot" type="Node2D"]
+script = ExtResource("1_kfrmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("2_krko4")
+
+[node name="Area2D" type="Area2D" parent="." groups=["slot"]]
+script = ExtResource("3_nf2l7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wbkb2")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_area_exited"]
